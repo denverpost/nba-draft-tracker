@@ -4,7 +4,7 @@ var google_docs_one = 'https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US
 var google_docs_two = '&output=html';
 
 // Google Docs spreadsheet key
-var spreadsheet_key = '1Iqh1LZ5NHXGAakgTCnRjixguV7v557iud6a7ALzTz3Q';
+var spreadsheet_key = '1M6o3K-NFXXgIEeoO7SJLft5hWr0kLj3Z7u1oHXKSQMc';
 
 // Template sources and what DIVs they will appear in
 var templates = [{
@@ -68,7 +68,7 @@ function loadDataTable() {
         "oLanguage": {
             "sLengthMenu": "_MENU_ records per page"
         },
-        "iDisplayLength": 16, // number of records per page
+        "iDisplayLength": 15, // number of records per page
         "iDisplayStart": 0, // where to start on table load
         "aaSorting": [
             [0, "asc"]
@@ -107,14 +107,15 @@ function loadDataTable() {
         .columnFilter({
             aoColumns: [{
                     type: "select",
-                    values: ['1', '2', '3', '4', '5', '6', '7']
+                    // values: ['1', '2', '3', '4', '5', '6', '7']
+                    values: ['1', '2']
                 },
                 null,
                 null,
                 null,
                 null, {
                     type: "select",
-                    values: ['49ers', 'Bears', 'Bengals', 'Bills', 'Broncos', 'Browns', 'Buccaneers', 'Cardinals', 'Chargers', 'Chiefs', 'Colts', 'Cowboys', 'Dolphins', 'Eagles', 'Falcons', 'Giants', 'Jaguars', 'Jets', 'Lions', 'Packers', 'Panthers', 'Patriots', 'Raiders', 'Rams', 'Ravens', 'Redskins', 'Saints', 'Seahawks', 'Steelers', 'Texans', 'Titans', 'Vikings']
+                    values: ['76ers','Bucks','Bulls','Cavaliers','Celtics','Clippers','Grizzlies','Hawks','Heat','Hornets','Jazz','Kings','Knicks','Lakers','Magic','Mavericks','Nets','Nuggets','Pacers','Pelicans','Pistons','Raptors','Rockets','Spurs','Suns','Thunder','Timberwolves','Trail Blazers','Warriors','Wizards']
                 }
             ]
         });
