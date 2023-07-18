@@ -139,7 +139,7 @@ span.dtr-title {
                         <th class="all">Pick</th>
                         <th class="all">Player</th>
                         <th class="all">Team</th>
-                        <th class="all">School</th>
+                        <th class="all">Previous</th>
                         <th class="all">Position</th>
                         <th class="all">Link</th>
                     </tr>
@@ -150,10 +150,34 @@ span.dtr-title {
         </div>
     </div>
     <script>
-    var chartSpreadsheetID = '1UFbhsJAEO2nEWHuimOIL7JURsc_-cBg5B2kmbzw9VpU/1';
-    var url = "https://spreadsheets.google.com/feeds/list/" + chartSpreadsheetID + "/public/full?alt=json";
+    // var chartSpreadsheetID = '1UFbhsJAEO2nEWHuimOIL7JURsc_-cBg5B2kmbzw9VpU/1';
+    // var url = "https://spreadsheets.google.com/feeds/list/" + chartSpreadsheetID + "/public/full?alt=json";
 
+    var url = "backup_data.json";
     $.getJSON(url, function(data) {
+
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+        var values = data.values;
+
+        var columns = [];
+        var headings = values[0];
+        var values_with_no_headings = values.slice(1);
+
+        for (var i in headings) {
+            columns.push({ title: capitalizeFirstLetter(headings[i]) });
+        }
+
+        function rowsToObjects(headers, rows) {
+            return rows.reduce((acc, e, idx) => {
+                acc.push(headers.reduce((r, h, i) => { r[h] = e[i]; return r; }, {}))
+                return acc;
+            }, []);
+        };
+
+        const result = rowsToObjects(headings, values_with_no_headings);
+        console.log(result);
 
         /*** This function will break display start if in $(document).ready(function)) ***/
         // function disableDependentFilter(level, inuse) {
@@ -230,7 +254,7 @@ span.dtr-title {
 
                             column_number: 4,
                             filter_container_id: 'filter-3',
-                            filter_default_label: 'Filter by school'
+                            filter_default_label: 'Filter by previous affiliation'
                         },
                         {
 
